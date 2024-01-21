@@ -1,12 +1,13 @@
 import React from 'react'
 import SideBar from './SideBar.js'
-import Main from './MainContainer.js'
+// import Main from './MainContainer.js'
+import { Outlet } from 'react-router-dom'
 
 const Body = () => {
   return (
-    <div className='grid grid-flow-col'>
+    <div className='flex'>
       <SideBar/>
-      <Main/>
+      <Outlet/>
     </div>
   )
 }

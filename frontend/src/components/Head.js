@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice.js";
 import { Youtube_Search_Api } from "../utils/constants.js";
+//import store from "../utils/store.js";
+import { cacheResults } from "../utils/searchSlice.js";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const[showSuggestions, setShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store) => store.search);
+ 
+  /**
+   * {
+   * "iphone":["iphone", "iphone 11", "iphone"]}
+   */
   useEffect(() => {
     //Api call
     console.log(searchQuery);
@@ -16,6 +24,11 @@ const Head = () => {
     // but if the difference between 2 Api calls is <200ms
     // decline the Api call
     const timer = setTimeout(() => getSearchSuggestions(), 200);
+    if(searchCache[searchQuery]) {
+      setShowSuggestions(searchCache[searchQuery]);
+    } else {
+      getSearchSuggestions();
+    }
    
     return () => {
       clearTimeout(timer);
@@ -40,6 +53,11 @@ const Head = () => {
     const json = await data.json();
     //console.log(json[1]);
     setSuggestions(json[1]);
+
+    // update cache 
+    dispatch(cacheResults({
+      [searchQuery]: json[1],
+    }))
   };
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {

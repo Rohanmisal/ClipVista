@@ -13,8 +13,8 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, [dispatch]);
   return (
-    <div className="flex flex-col">
-      <div className="px-5 flex w-full">
+    <div className="flex flex-col w-full">
+      <div className="px-5 flex ">
         <div>
         <iframe
         className="rounded-xl"
@@ -27,7 +27,7 @@ const WatchPage = () => {
           allowFullScreen
         ></iframe>
         </div>
-        <div>
+        <div className="w-full">
           <Livechat/>
         </div>
       </div>

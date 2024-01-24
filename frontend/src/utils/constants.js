@@ -1,5 +1,7 @@
 const GOOGLe_API_KEY = "AIzaSyCd6rBt39VZd2zQM_dmN1_zeqBbcxNuk6I"
 
+export const OFFSET_LIVE_CHAT = 10;
+
 export const Youtube_Api ="https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=In&key=" + GOOGLe_API_KEY
 
 

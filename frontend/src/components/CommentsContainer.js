@@ -12,7 +12,37 @@ const commentsData = [
       {
         name: "shoham",
         text: "lorem ipsum dolor sit",
-        replies: [],
+        replies: [
+          {
+            name: "mohan Misal",
+            text: "lorem ipsum dolor sit",
+            replies: [
+              {
+                name: "baban Misal",
+                text: "lorem ipsum dolor sit",
+                replies: [
+                  {
+                    name: "ketan Misal",
+                    text: "lorem ipsum dolor sit",
+                    replies: [
+                      {
+                        name: "mohan Misal",
+                        text: "lorem ipsum dolor sit",
+                        replies: [
+                          {
+                            name: "shriram Misal",
+                            text: "lorem ipsum dolor sit",
+                            replies: [],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -30,7 +60,7 @@ const commentsData = [
 ];
 
 const Comment = ({ data }) => {
-  const { name, text, replies } = data;
+  const { name, text} = data;
   return (
     <div className="flex shadow-sm bg-gray-100 p-2 rounded-lg my-2">
       <img
@@ -41,6 +71,7 @@ const Comment = ({ data }) => {
       <div className="px-3">
         <h1 className="font-bold">{name}</h1>
         <p className="">{text}</p>
+        {/* <p>{replies}</p> */}
         {/* {replies.map((reply, index) => (
           <Comment key={index} data={reply} />
         ))} */}
@@ -49,23 +80,24 @@ const Comment = ({ data }) => {
   );
 };
 
-const CommentsList = ( comments ) => {
+const CommentsList = ( {Comments} ) => {
   // Don't use index as keys
-  return comments.map((comment, index) => (
+  return Comments.map((comment, index) => (
     <div>
       <Comment key={index} data={comment} />
       <div className="pl-5 border border-l-black ml-5">
-        <CommentsList comments={comment.replies} />
+        <CommentsList Comments={comment.replies} />
       </div>
     </div>
   ));
 };
+console.log();
 const CommentsContainer = () => {
   return (
     <div className="m-5 p-2">
       <h1 className="text-2xl font-bold">Comments:</h1>
-      {/* <CommentsList Comments={commentsData} /> */}
-      <Comment data={commentsData} />
+      <CommentsList Comments={commentsData} />
+      {/* <Comment data={commentsData} /> */}
     </div>
   );
 };

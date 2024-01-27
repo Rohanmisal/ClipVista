@@ -4,6 +4,7 @@ import { toggleMenu } from "../utils/appSlice.js";
 import { Youtube_Search_Api } from "../utils/constants.js";
 //import store from "../utils/store.js";
 import { cacheResults } from "../utils/searchSlice.js";
+import img from "../assets/img/logo.svg"
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -64,7 +65,7 @@ const Head = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="grid grid-flow-col p-2 m-2 shadow-lg">
+    <div className="grid grid-flow-col p-2  shadow-lg ">
       <div className="flex col-span-1">
         <img
           onClick={() => toggleMenuHandler()}
@@ -75,8 +76,8 @@ const Head = () => {
 
         <a href="/">
           <img
-            className="h-8 mx-2"
-            src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png"
+            className="h-12 mx-2 pt-0"
+            src={img}
             alt="logo"
           ></img>
         </a>
